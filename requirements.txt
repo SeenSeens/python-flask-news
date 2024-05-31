@@ -1,0 +1,9 @@
+Click
+Flask
+Jinja2
+python-dotenv
+Werkzeug
+itsdangerous
+SQLAlchemy
+Flask-SQLAlchemy
+Flask-Migrate
