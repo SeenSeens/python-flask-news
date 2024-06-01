@@ -1,5 +1,4 @@
 from sqlalchemy import Column, String, Text, Boolean, DateTime, ForeignKey, Integer
-from sqlalchemy.orm import relationship
 from app.models.base import BaseModel
 from app.models.categories import Category
 from datetime import datetime

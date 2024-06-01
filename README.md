@@ -18,7 +18,8 @@
 ## Project Structure
 
 - `app/`: Gói ứng dụng chứa Blueprints, static files, templates, và routes.
-- `ap/admin`: Kế hoạch chi tiết cho các tuyến ứng dụng quản trị.
+- `app/admin`: Kế hoạch chi tiết cho các tuyến ứng dụng quản trị.
+- `app/crawler`: Thư mục chứa file crawl dữ liệu và những thứ liên quan.
 - `app/main/`: Kế hoạch chi tiết cho các tuyến ứng dụng người dùng.
 - `app/models`: Gói ứng dụng models, có thể chứa các hàm hoặc biến dùng chung cho tất cả các models.
 - `app/models/common_fields`: Các field dùng chung

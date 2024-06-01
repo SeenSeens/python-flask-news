@@ -7,3 +7,7 @@ itsdangerous
 SQLAlchemy
 Flask-SQLAlchemy
 Flask-Migrate
+requests
+beautifulsoup4
+flask-admin
+flask-login
