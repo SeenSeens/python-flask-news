@@ -12,7 +12,7 @@
 ## Bắt đầu nhanh
 1. Sao chép kho lưu trữ.
 2. Sao chép `.env.example` sang `.env` và đặt các biến môi trường của bạn.
-3. Cài đặt phụ thuộc: `pip install -r require.txt`.
+3. Cài đặt phụ thuộc: `pip install -r requirements.txt`.
 4. Chạy ứng dụng: `flask run`.# python-flask-news
 
 ## Project Structure
@@ -21,6 +21,7 @@
 - `ap/admin`: Kế hoạch chi tiết cho các tuyến ứng dụng quản trị.
 - `app/main/`: Kế hoạch chi tiết cho các tuyến ứng dụng người dùng.
 - `app/models`: Gói ứng dụng models, có thể chứa các hàm hoặc biến dùng chung cho tất cả các models.
+- `app/models/common_fields`: Các field dùng chung
 - `app/static/`: Thư mục dành cho các tệp CSS, JavaScript và hình ảnh.
 - `app/templates/`: Mẫu Jinja2 cho ứng dụng.
 - `instance/`: Folder for instance-specific configurations (not under version control).

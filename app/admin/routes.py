@@ -4,15 +4,15 @@ from flask import render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from . import admin
 
-@admin.route('/admin/dashboard')
+@admin.route('/dashboard')
 def dashboard():
     return render_template('admin/dashboard.html')
-@admin.route('/admin/accounts')
+@admin.route('/accounts')
 def accounts():
     return render_template('admin/accounts.html')
-@admin.route('/admin/posts')
+@admin.route('/posts')
 def posts():
     return render_template('admin/posts.html')
-@admin.route('/admin/posts/add-new')
+@admin.route('/posts/add-new')
 def add_new_posts():
     return render_template('admin/add-posts.html')

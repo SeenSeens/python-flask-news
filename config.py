@@ -3,6 +3,8 @@ class Config(object):
     SECRET_KEY = os.getenv('SECRET_KEY', 'default-secret-key')
     FLASK_ENV = os.getenv('FLASK_ENV', 'production')
     # Add other configuration variables here
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     DATABASE_URL = os.getenv('DATABASE_URL')
     #MAIL_SERVER = os.getenv('MAIL_SERVER')
     #MAIL_PORT = int(os.getenv('MAIL_PORT', 25))
