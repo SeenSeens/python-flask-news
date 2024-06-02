@@ -32,8 +32,6 @@ app.register_blueprint(main_blueprint)
 
 from app.admin import admin_bp, admin
 app.register_blueprint(admin_bp, url_prefix='/admin')
-# Initialize Flask-Admin
-admin.init_app(app)
 
 #from app.models import base, categories, posts  # Import models để chúng có thể được phát hiện bởi Flask-Migrate
 
