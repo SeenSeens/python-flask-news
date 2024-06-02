@@ -30,8 +30,8 @@ configure_logging(app)
 from app.main import main as main_blueprint
 app.register_blueprint(main_blueprint)
 
-from app.admin import admin as admin_blueprint
-app.register_blueprint(admin_blueprint, url_prefix='/admin')
+from app.admin import admin_bp, admin
+app.register_blueprint(admin_bp)
 
-from app.models import base, categories, posts  # Import models để chúng có thể được phát hiện bởi Flask-Migrate
+#from app.models import base, categories, posts  # Import models để chúng có thể được phát hiện bởi Flask-Migrate
 
