@@ -8,7 +8,6 @@ class Post(BaseModel):
     description = Column(Text())
     excerpt = Column(String(255))
     thumbnail = Column(String(100))
-    active = Column(Boolean, default=True)
     created_date = Column(DateTime, default=datetime.now())
     category_id = Column(Integer, ForeignKey(Category.id), nullable=False)
 
