@@ -39,7 +39,7 @@
                             </div>
                             <div class="custom-file mt-3 mb-3">
                                 <input id="fileInput" type="file" style="display:none;" />
-                                <input type="button" class="btn btn-primary btn-block mx-auto" value="THÊM ẢNH ĐẠI DIỆN" onclick="document.getElementById('fileInput').click();"    />
+                                <input type="button" class="btn btn-primary btn-block mx-auto" value="THÊM ẢNH ĐẠI DIỆN" onclick="document.getElementById('fileInput').click();" />
                             </div>
                         </div>
                         <div class="col-12">
@@ -52,10 +52,4 @@
     </div>
 {% endblock %}
 {% block js %}
-    <script src="{{ url_for('static', filename='admin/jquery-ui-datepicker/jquery-ui.min.js') }}"></script>
-    <script>
-      $(function() {
-        $("#expire_date").datepicker();
-      });
-    </script>
 {% endblock %}
