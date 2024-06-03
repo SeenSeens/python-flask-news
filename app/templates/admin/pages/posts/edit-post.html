@@ -1,7 +1,7 @@
 {% extends 'admin/layout/base.html' %}
-{% block title %}Sửa bài viết{% endblock %}
+{% block title %}Chỉnh sửa bài viết{% endblock %}
 {% block content %}
-<div class="container tm-mt-big tm-mb-big">
+<div class="container-fluid tm-mt-big tm-mb-big">
     <div class="row">
         <div class="col-12 mx-auto">
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <form action="{{ url_for('admin.edit_post', id=post.id) }}" method="POST" class="row tm-edit-product-row" enctype="multipart/form-data" autocomplete="off">
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <div class="form-group mb-3">
                             <label for="name">Tên bài viết</label>
                             <input id="name" type="text" class="form-control validate" name="name" value="{{ post.name }}" required/>
@@ -19,6 +19,10 @@
                         <div class="form-group mb-3">
                             <label for="description">Nội dung</label>
                             <textarea class="form-control validate" rows="3" name="description">{{ post.description }}</textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="description">Mô tả ngắn</label>
+                            <textarea class="form-control validate" name="excerpt">{{ post.excerpt }}</textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label for="category_id">Chuyên mục</label>
@@ -29,13 +33,18 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4 mx-auto mb-4">
+                    <div class="col-md-3 mx-auto mb-4">
                         <div class="tm-product-img-dummy mx-auto">
-                            <i class="fas fa-cloud-upload-alt tm-upload-icon"></i>
+                            {% if post.thumbnail %}
+                                <img id="previewImg" src="{{ url_for('media', filename=post.thumbnail) }}" alt="Thumbnail" class="img-thumbnail mt-2" width="200">
+                            {% else %}
+                                <img id="previewImg" class="d-none img-thumbnail mt-2" width="200">
+                                <i id="uploadIcon" class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
+                            {% endif %}
                         </div>
                         <div class="custom-file mt-3 mb-3">
-                            <input id="fileInput" type="file" style="display:none;" />
-                            <input type="button" class="btn btn-primary btn-block mx-auto" value="CẬP NHẬT HÌNH ẢNH" />
+                            <input id="fileInput" type="file" name="thumbnail" style="display:none;" />
+                            <input type="button" class="btn btn-primary btn-block mx-auto" value="CẬP NHẬT HÌNH ẢNH" onclick="document.getElementById('fileInput').click();" />
                         </div>
                     </div>
                     <div class="col-12">
@@ -48,5 +57,5 @@
 </div>
 {% endblock %}
 {% block js %}
-
+    <script src="{{ url_for('static', filename='admin/js/preview.js') }}"></script>
 {% endblock %}

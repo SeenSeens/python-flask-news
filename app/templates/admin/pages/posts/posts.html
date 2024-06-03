@@ -1,5 +1,5 @@
 {% extends 'admin/layout/base.html' %}
-{% block title %}Posts{% endblock %}
+{% block title %}Bài viết{% endblock %}
 {% block content %}
     <div class="container mt-5">
         <div class="row tm-content-row">
@@ -12,7 +12,7 @@
                                 <tr>
                                     <th scope="col">TÊN BÀI VIẾT</th>
                                     <th scope="col">CHUYÊN MỤC</th>
-                                    <th scope="col">EXPIRE DATE</th>
+                                    <th scope="col">NGÀY ĐĂNG BÀI</th>
                                     <th scope="col">&nbsp;</th>
                                 </tr>
                             </thead>
@@ -49,10 +49,10 @@
                                     <tr>
                                         <td class="tm-product-name">{{ cat.name }}</td>
                                         <td class="text-center">
-                                            <a href="#" class="tm-product-delete-link">
+                                            <a href="{{ url_for('admin.edit_category', id=cat.id) }}" class="tm-product-delete-link">
                                                 <i class="fas fa-pencil-alt tm-product-delete-icon"></i>
                                             </a>
-                                            <a href="#" class="tm-product-delete-link">
+                                            <a href="#" class="tm-product-delete-link" onclick="deleteCategory({{ cat.id }})">
                                                 <i class="far fa-trash-alt tm-product-delete-icon"></i>
                                             </a>
                                         </td>
@@ -62,9 +62,7 @@
                         </table>
                     </div>
                     <!-- table container -->
-                    <button class="btn btn-primary btn-block text-uppercase mb-3">
-                        Thêm mới chuyên mục
-                    </button>
+                    <a href="{{ url_for('admin.add_new_category') }}" class="btn btn-primary btn-block text-uppercase mb-3">Thêm mới chuyên mục</a>
                 </div>
             </div>
         </div>
@@ -72,34 +70,50 @@
 {% endblock %}
 {% block js %}
     <script>
-         deletePost = (postId) => {
+        $(function() {
+            $(".tm-product-name").on("click", function() {
+                window.location.href = "/admin/posts/add-new";
+            });
+        });
+
+        deletePost = (postId) => {
             if (confirm('Bạn có chắc chắn muốn xóa bài viết này?')) {
                 fetch(`{{ url_for('admin.delete_post', id=0) }}`.replace('0', postId), {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                })
-                .then(response => {
+                }).then(response => {
                     if (response.ok) {
                         location.reload(); // Tải lại trang để phản ánh những thay đổi
                     } else {
                         alert('Không thể xóa bài đăng');
                     }
-                })
-                .catch(error => {
+                }).catch(error => {
                     console.error('Error:', error);
                     alert('Đã xảy ra lỗi khi xóa bài đăng');
                 });
             }
         }
-    </script>
 
-    <script>
-      $(function() {
-        $(".tm-product-name").on("click", function() {
-          window.location.href = "/admin/posts/add-new";
-        });
-      });
+        deleteCategory = (catId) => {
+            if (confirm('Bạn có chắc chắn muốn xóa chuyên mục này?')) {
+                fetch(`{{ url_for('admin.delete_category', id=0) }}`.replace('0', catId), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }).then(response => {
+                    if (response.ok) {
+                        location.reload(); // Tải lại trang để phản ánh những thay đổi
+                    } else {
+                        alert('Không thể xóa chuyên mục');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert('Đã xảy ra lỗi khi xóa chuyên mục');
+                });
+            }
+        }
     </script>
 {% endblock %}

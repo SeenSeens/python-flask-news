@@ -1,0 +1,45 @@
+{% extends 'admin/layout/base.html' %}
+{% block title %}Chỉnh sửa chuyên mục{% endblock %}
+{% block content %}
+<div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Sửa bài viết</h2>
+                    </div>
+                </div>
+                <form action="{{ url_for('admin.edit_category', id=category.id) }}" method="POST" class="row tm-edit-product-row" enctype="multipart/form-data" autocomplete="off">
+                    <div class="col-md-8">
+                        <div class="form-group mb-3">
+                            <label for="name">Tên bài viết</label>
+                            <input id="name" type="text" class="form-control validate" name="name" value="{{ category.name }}" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mx-auto mb-4">
+                        <div class="tm-product-img-dummy mx-auto">
+                            {% if category.thumbnail %}
+                                <img id="previewImg" src="{{ url_for('media', filename=category.thumbnail) }}" alt="Thumbnail" class="img-thumbnail mt-2" width="200">
+                            {% else %}
+                                <img id="previewImg" class="d-none img-thumbnail mt-2" width="200">
+                                <i id="uploadIcon" class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
+                            {% endif %}
+                        </div>
+                        <div class="custom-file mt-3 mb-3">
+                            <input id="fileInput" type="file" name="thumbnail" style="display:none;" />
+                            <input type="button" class="btn btn-primary btn-block mx-auto" value="CẬP NHẬT HÌNH ẢNH" onclick="document.getElementById('fileInput').click();" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block text-uppercase">Cập nhật chuyên mục</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+    <script src="{{ url_for('static', filename='admin/js/preview.js') }}"></script>
+{% endblock %}

@@ -1,5 +1,6 @@
+import os
 import logging
-from flask import Flask
+from flask import Flask, send_from_directory
 from config import Config
 from logging.handlers import TimedRotatingFileHandler
 from flask_sqlalchemy import SQLAlchemy
@@ -9,12 +10,17 @@ from flask_migrate import Migrate
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.config.from_object(Config)
 
+# Tạo thư mục lưu trữ media nếu chưa tồn tại
+# if not os.path.exists(app.config['MEDIA_FOLDER']):
+#     os.makedirs(app.config['MEDIA_FOLDER'])
+
 # Khởi tạo SQLAlchemy và Migrate
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Configuration for media files
-app.config['MEDIA_FOLDER'] = 'media'
+app.config['MEDIA_FOLDER'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'media')
+app.config['MEDIA_URL'] = '/media/'
 
 # Configures the logging
 def configure_logging(app):
@@ -35,3 +41,7 @@ app.register_blueprint(admin_bp)
 
 #from app.models import base, categories, posts  # Import models để chúng có thể được phát hiện bởi Flask-Migrate
 
+# Serve media files
+@app.route('/media/<path:filename>')
+def media(filename):
+    return send_from_directory(app.config['MEDIA_FOLDER'], filename)
