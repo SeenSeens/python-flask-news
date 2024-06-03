@@ -70,3 +70,40 @@ def delete_post(id):
     flash('Post deleted successfully!', 'success')
     return jsonify({'success': True})  # Trả về JSON response để JavaScript biết yêu cầu thành công
     # return redirect(url_for('admin.posts'))
+
+@admin_bp.route('/category/add-new', methods=['GET', 'POST'])
+def add_new_category():
+    if request.method == 'POST':
+        name = request.form['name']
+        # thumbnail = request.form['thumbnail']
+
+        new_post = Category(
+            name=name,
+            # thumbnail=thumbnail,
+        )
+        db.session.add(new_post)
+        db.session.commit()
+
+        return redirect(url_for('admin.posts'))
+
+    return render_template('admin/add-category.html')
+
+@admin_bp.route('/category/edit/<int:id>', methods=['GET', 'POST'])
+def edit_category(id):
+    category = Category.query.get_or_404(id)
+    if request.method == 'POST':
+        category.name = request.form['name']
+        # category.thumbnail = request.form['thumbnail']
+        db.session.commit()
+        flash('Category updated successfully!', 'success')
+        return redirect(url_for('admin.posts'))
+    return render_template('admin/edit-category.html', category=category)
+
+@admin_bp.route('/category/delete/<int:id>', methods=['POST'])
+def delete_category(id):
+    category = Category.query.get_or_404(id)
+    db.session.delete(category)
+    db.session.commit()
+    flash('Category deleted successfully!', 'success')
+    return jsonify({'success': True})  # Trả về JSON response để JavaScript biết yêu cầu thành công
+    # return redirect(url_for('admin.posts'))
