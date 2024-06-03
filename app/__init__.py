@@ -1,3 +1,4 @@
+import os
 import logging
 from flask import Flask
 from config import Config
@@ -8,6 +9,10 @@ from flask_migrate import Migrate
 # Khởi tạo ứng dụng Flask
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.config.from_object(Config)
+
+# Tạo thư mục lưu trữ media nếu chưa tồn tại
+# if not os.path.exists(app.config['MEDIA_FOLDER']):
+#     os.makedirs(app.config['MEDIA_FOLDER'])
 
 # Khởi tạo SQLAlchemy và Migrate
 db = SQLAlchemy(app)

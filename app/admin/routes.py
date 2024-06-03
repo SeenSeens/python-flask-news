@@ -1,10 +1,9 @@
-import os
-from flask import render_template, request, redirect, url_for, Blueprint, flash, jsonify
-from werkzeug.utils import secure_filename
+from flask import render_template, request, redirect, url_for, flash, jsonify
 from . import admin_bp
 from app.models.posts import Post
 from app.models.categories import Category
 from app import db
+from utils.images import handle_image_upload
 
 @admin_bp.route('/dashboard')
 def dashboard():
@@ -75,17 +74,16 @@ def delete_post(id):
 def add_new_category():
     if request.method == 'POST':
         name = request.form['name']
-        # thumbnail = request.form['thumbnail']
-
+        # Xử lý file upload
+        file = request.files['thumbnail']
+        filename = handle_image_upload(file)
         new_post = Category(
             name=name,
-            # thumbnail=thumbnail,
+            thumbnail=filename  # Lưu tên file vào database
         )
         db.session.add(new_post)
         db.session.commit()
-
         return redirect(url_for('admin.posts'))
-
     return render_template('admin/add-category.html')
 
 @admin_bp.route('/category/edit/<int:id>', methods=['GET', 'POST'])
