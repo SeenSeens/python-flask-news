@@ -19,11 +19,16 @@
                     </div>
                     <div class="col-md-4 mx-auto mb-4">
                         <div class="tm-product-img-dummy mx-auto">
-                            <i class="fas fa-cloud-upload-alt tm-upload-icon"></i>
+                            {% if category.thumbnail %}
+                                <img id="previewImg" src="{{ url_for('media', filename=category.thumbnail) }}" alt="Thumbnail" class="img-thumbnail mt-2" width="200">
+                            {% else %}
+                                <img id="previewImg" class="d-none img-thumbnail mt-2" width="200">
+                                <i id="uploadIcon" class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
+                            {% endif %}
                         </div>
                         <div class="custom-file mt-3 mb-3">
-                            <input id="fileInput" type="file" style="display:none;" />
-                            <input type="button" class="btn btn-primary btn-block mx-auto" value="CẬP NHẬT HÌNH ẢNH" />
+                            <input id="fileInput" type="file" name="thumbnail" style="display:none;" />
+                            <input type="button" class="btn btn-primary btn-block mx-auto" value="CẬP NHẬT HÌNH ẢNH" onclick="document.getElementById('fileInput').click();" />
                         </div>
                     </div>
                     <div class="col-12">
@@ -36,5 +41,5 @@
 </div>
 {% endblock %}
 {% block js %}
-
+    <script src="{{ url_for('static', filename='admin/js/preview.js') }}"></script>
 {% endblock %}
