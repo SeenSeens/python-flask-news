@@ -1,18 +1,18 @@
 {% extends 'admin/layout/base.html' %}
 {% block title %}Bài viết{% endblock %}
 {% block content %}
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <div class="row tm-content-row">
-            <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+            <div class="col-sm-12 col-md-12 col-lg-9 col-xl-9 tm-block-col">
                 <div class="tm-bg-primary-dark tm-block tm-block-products">
                     <div class="tm-product-table-container">
-                        {{ super() }}
                         <table class="table table-hover tm-table-small tm-product-table">
                             <thead>
                                 <tr>
                                     <th scope="col">TÊN BÀI VIẾT</th>
                                     <th scope="col">CHUYÊN MỤC</th>
                                     <th scope="col">NGÀY ĐĂNG BÀI</th>
+                                    <th scope="col">TRẠNG THÁI</th>
                                     <th scope="col">&nbsp;</th>
                                 </tr>
                             </thead>
@@ -21,7 +21,14 @@
                                     <tr>
                                         <td class="tm-product-name">{{ post.name }}</td>
                                         <td>{{ post.category.name }}</td>
-                                        <td>{{ post.created_date }}</td>
+                                        <td>{{ post.created_date.strftime('%d-%m-%Y') }}</td>
+                                        <td>
+                                            {% if post.active == 0 %}
+                                            	Bản nháp
+                                            {% else  %}
+                                                Đã đăng
+                                            {% endif %}
+                                        </td>
                                         <td>
                                             <a href="{{ url_for('admin.edit_post', id=post.id) }}" class="tm-product-delete-link">
                                                 <i class="fas fa-pencil-alt tm-product-delete-icon"></i>
@@ -39,7 +46,7 @@
                     <a href="{{ url_for('admin.add_new_posts') }}" class="btn btn-primary btn-block text-uppercase mb-3">Thêm bài viết mới</a>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
+            <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 tm-block-col">
                 <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
                     <h2 class="tm-block-title">Chuyên mục</h2>
                     <div class="tm-product-table-container">

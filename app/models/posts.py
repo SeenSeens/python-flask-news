@@ -7,6 +7,7 @@ class Post(BaseModel):
     name = Column(String(50), nullable=False)
     description = Column(Text())
     excerpt = Column(String(255))
+    active = Column(Boolean, default=False)
     created_date = Column(DateTime, default=datetime.now())
     category_id = Column(Integer, ForeignKey(Category.id), nullable=False)
 

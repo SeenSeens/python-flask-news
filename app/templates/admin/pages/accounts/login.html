@@ -12,7 +12,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-12">
-                            <form action="{{ url_for('admin/login') }}" method="post" class="tm-login-form">
+                            <form action="{{ url_for('admin.login') }}" method="post" class="tm-login-form">
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input name="username" type="text" class="form-control validate" id="username" value="" required/>
@@ -26,6 +26,11 @@
                                 </div>
                                 <button class="mt-5 btn btn-primary btn-block text-uppercase">Forgot your password?</button>
                             </form>
+                            {% if err_msg %}
+                            	<div class="alert alert-danger">
+                                    <h4>{{ err_msg }}</h4>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
