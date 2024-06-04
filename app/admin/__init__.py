@@ -15,4 +15,5 @@ login_manager.login_view = 'admin.login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-from . import routes, views, middleware
+from .routes import posts, categories, auth, views, accounts, media, dashboard
+from . import middleware
