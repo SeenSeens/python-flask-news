@@ -27,12 +27,12 @@
 - `app/crawler`: Thư mục chứa file crawl dữ liệu và những thứ liên quan.
 - `app/main/`: Kế hoạch chi tiết cho các tuyến ứng dụng người dùng.
 - `app/models`: Gói ứng dụng models, có thể chứa các hàm hoặc biến dùng chung cho tất cả các models.
-- `app/models/common_fields`: Các field dùng chung
 - `app/static/`: Thư mục dành cho các tệp CSS, JavaScript và hình ảnh.
 - `app/templates/`: Mẫu Jinja2 cho ứng dụng.
 - `instance/`: Folder for instance-specific configurations (not under version control).
 - `migrations`: Thư mục chứa các file liên quan đến quá trình di chuyển (migration) cơ sở dữ liệu, được tạo ra bởi Flask-Migrate và Alembic.
 - `tests`: Chứa các test cho gói ứng dụng.
+- `utils`: Thư mục chứa các hàm sử dụng chung
 - `.env`: General environment variables (not to be committed).
 - `.env.example`
 - `.flaskenv`: File chứa các biến môi trường dành riêng cho Flask.
@@ -43,6 +43,28 @@
 - `README.md`: File chứa thông tin và hướng dẫn sử dụng dự án
 - `requirements.txt`: Danh sách các thư viện và phiên bản cần cài đặt cho dự án.
 
+## Detailed project structure
+- `app/`: Gói ứng dụng chứa Blueprints, static files, templates, và routes.
+- `app/admin`: Kế hoạch chi tiết cho các tuyến ứng dụng quản trị.
+- 
+- `app/crawler`: Thư mục chứa file crawl dữ liệu và những thứ liên quan.
+- `app/main/`: Kế hoạch chi tiết cho các tuyến ứng dụng người dùng.
+- `app/models`: Gói ứng dụng models, có thể chứa các hàm hoặc biến dùng chung cho tất cả các models.
+- `app/static/`: Thư mục dành cho các tệp CSS, JavaScript và hình ảnh.
+- `app/templates/`: Mẫu Jinja2 cho ứng dụng.
+- `instance/`: Folder for instance-specific configurations (not under version control).
+- `migrations`: Thư mục chứa các file liên quan đến quá trình di chuyển (migration) cơ sở dữ liệu, được tạo ra bởi Flask-Migrate và Alembic.
+- `tests`: Chứa các test cho gói ứng dụng.
+- `utils`: Thư mục chứa các hàm sử dụng chung
+- `.env`: General environment variables (not to be committed).
+- `.env.example`
+- `.flaskenv`: File chứa các biến môi trường dành riêng cho Flask.
+- `.gitignore`: 
+- `application.py`: Entry point for the Flask application.
+- `config.py`: Chứa các thiết lập cấu hình của ứng dụng.
+- `flask-template.log`
+- `README.md`: File chứa thông tin và hướng dẫn sử dụng dự án
+- `requirements.txt`: Danh sách các thư viện và phiên bản cần cài đặt cho dự án.
 ## Cấu hình
 Định cấu hình ứng dụng bằng tệp `.env`. Tham chiếu `.env.example` cho các biến bắt buộc.
 
