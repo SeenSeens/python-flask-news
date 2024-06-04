@@ -7,7 +7,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10">
                     <div class="site-heading">
-                        <h1>Chuyên Công Nghệ</h1>
+                        <h1>Chuyện Công Nghệ</h1>
                         <span class="subheading">Một Blog chuyên về công nghệ</span>
                     </div>
                 </div>
@@ -21,6 +21,9 @@
                 {% for post in posts %}
                     <!-- Post preview-->
                     <div class="post-preview">
+                        {% if post.thumbnail %}
+                            <img src="{{ url_for('media', filename=post.thumbnail) }}" alt="{{ post.name }}" class="img-fluid">
+                        {% endif %}
                         <a href="{{ url_for('main.post_detail', id=post.id) }}">
                             <h2 class="post-title">{{ post.name }}</h2>
                             <h3 class="post-subtitle">{{ post.excerpt | safe }}</h3>
@@ -28,7 +31,7 @@
                         <p class="post-meta">
                             Posted by
                             <a href="#!">Start Bootstrap</a>
-                            {{ post.created_date }}
+                            {{ post.created_date.strftime('%d-%m-%Y') }}
                         </p>
                     </div>
                     <!-- Divider-->

@@ -1,20 +1,23 @@
-from sqlalchemy import Column, String, Boolean
+from datetime import datetime
+from sqlalchemy import Column, String, Boolean, DateTime, Enum
+from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.base import BaseModel
-from flask_login import LoginManager, UserMixin
-login_manager = LoginManager()
-login_manager.login_view = 'login'
+from flask_login import UserMixin
+from enum import Enum as UserEnum
 
 # User model
+class UserRole(UserEnum):
+    ADMIN = 1
+    USER = 2
 class User(BaseModel, UserMixin):
     __tablename__ = 'user'
-    username = Column(String(20), unique=True, nullable=False)
-    password = Column(String(100), nullable=False)
-    is_admin = Column(Boolean, default=False)
 
+    name = Column(String(50), nullable=False)
+    username = Column(String(50),unique=True, nullable=False)
+    email = Column(String(50), unique=True, nullable=False)
+    password = Column(String(50), nullable=False)
+    active = Column(Boolean(), default=True)
+    join_date = Column(DateTime(), default=datetime.now())
+    user_role = Column(Enum(UserRole), default=UserRole.USER)
     def __str__(self):
         return self.username
-
-
-@login_manager.user_loader
-def load_user(id):
-    return User.query.get(int(id))

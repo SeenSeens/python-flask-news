@@ -15,7 +15,7 @@
                     <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Category</a>
                     <ul class="dropdown-menu">
                         {% for category in categories %}
-                            <li><a class="dropdown-item" href="{{ url_for('main.posts_by_category', id=category.id) }}">{{ category.name }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.posts_by_category', category_id=category.id) }}">{{ category.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>

@@ -6,9 +6,13 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DATABASE_URL = os.getenv('DATABASE_URL')
-    #MAIL_SERVER = os.getenv('MAIL_SERVER')
-    #MAIL_PORT = int(os.getenv('MAIL_PORT', 25))
-    #MAIL_USE_TLS = os.getenv('MAIL_USE_TLS', 'false').lower() in ['true', 'on', '1']
-    #MAIL_USERNAME = os.getenv('MAIL_USERNAME')
-    #MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
+    MAIL_SERVER = os.getenv('MAIL_SERVER')
+    MAIL_PORT = int(os.getenv('MAIL_PORT', 25))
+    MAIL_USE_TLS = os.getenv('MAIL_USE_TLS', 'false').lower() in ['true', 'on', '1']
+    MAIL_USERNAME = os.getenv('MAIL_USERNAME')
+    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
+    # Cloudinary
+    # CLOUD_NAME = os.getenv('CLOUD_NAME')
+    # API_KEY = os.getenv('API_KEY')
+    # API_SECRET = os.getenv('API_SECRET')
     # ... etc ...

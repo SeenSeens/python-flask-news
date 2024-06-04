@@ -15,6 +15,11 @@
 3. Cài đặt phụ thuộc: `pip install -r requirements.txt`.
 4. Chạy ứng dụng: `flask run`.# python-flask-news
 
+## Flask db migrate
+- flask db init
+- flask db migrate -m "Initial migration."
+- flask db upgrade
+
 ## Project Structure
 
 - `app/`: Gói ứng dụng chứa Blueprints, static files, templates, và routes.
