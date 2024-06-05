@@ -65,6 +65,7 @@
 - `flask-template.log`
 - `README.md`: File chứa thông tin và hướng dẫn sử dụng dự án
 - `requirements.txt`: Danh sách các thư viện và phiên bản cần cài đặt cho dự án.
+
 ## Cấu hình
 Định cấu hình ứng dụng bằng tệp `.env`. Tham chiếu `.env.example` cho các biến bắt buộc.
 
