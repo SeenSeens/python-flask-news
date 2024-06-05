@@ -23,9 +23,9 @@ def register():
                 auth.add_user(name=name, username=username, email=email, password=password, thumbnail=avatar_path)
                 return redirect(url_for('admin.dashboard'))
             else:
-                err_msg = 'Mat khau khong khop'
+                err_msg = 'Mật khẩu không khớp'
         except Exception as ex:
-            err_msg = 'He thong dang co loi: ' + str(ex)
+            err_msg = 'Hệ thống đang có lỗi: ' + str(ex)
 
     return render_template('admin/pages/accounts/register.html', err_msg=err_msg)
 
@@ -41,7 +41,7 @@ def login():
             login_user(user)
             return redirect(url_for('admin.dashboard'))
         else:
-            err_msg = 'Username hoac mat khau khong khop'
+            err_msg = 'Tài khoản hoặc mật khẩu không chính xác'
     return render_template('admin/pages/accounts/login.html', err_msg=err_msg)
 
 @admin_bp.route('/logout')

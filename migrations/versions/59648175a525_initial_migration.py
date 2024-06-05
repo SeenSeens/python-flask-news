@@ -1,8 +1,8 @@
 """Initial migration.
 
-Revision ID: 261bf3eecc7f
+Revision ID: 59648175a525
 Revises: 
-Create Date: 2024-06-04 19:08:29.993768
+Create Date: 2024-06-05 05:51:52.501649
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '261bf3eecc7f'
+revision = '59648175a525'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,12 +25,17 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
-    sa.Column('username', sa.String(length=20), nullable=False),
-    sa.Column('password', sa.String(length=100), nullable=False),
-    sa.Column('is_admin', sa.Boolean(), nullable=True),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('username', sa.String(length=50), nullable=False),
+    sa.Column('email', sa.String(length=50), nullable=False),
+    sa.Column('password', sa.String(length=50), nullable=False),
+    sa.Column('active', sa.Boolean(), nullable=True),
+    sa.Column('join_date', sa.DateTime(), nullable=True),
+    sa.Column('user_role', sa.Enum('ADMIN', 'USER', name='userrole'), nullable=True),
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('thumbnail', sa.String(length=100), nullable=True),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
     op.create_table('post',

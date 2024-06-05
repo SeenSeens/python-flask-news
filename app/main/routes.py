@@ -10,6 +10,7 @@ from ..models import Post, Category
 def inject_categories():
     categories = Category.query.all()
     return dict(categories=categories)
+
 @main.route('/')
 def index():
     categories = Category.query.all()
@@ -17,12 +18,14 @@ def index():
                        .order_by(Post.created_date.desc())
                        .limit(10).all())
     return render_template('main/index.html', categories=categories, posts=published_posts)
+
 @main.route('/about')
 def about():
     return render_template('main/about.html')
+
 @main.route('/contact', methods=['GET', 'POST'])
 def contact():
-    if request.method == 'POST':
+    if request.method.__eq__('POST'):
         name = request.form['name']
         email = request.form['email']
         phone = request.form['phone']
@@ -31,6 +34,7 @@ def contact():
         flash('Your message has been sent successfully!', 'success')
         return redirect(url_for('main.contact'))
     return render_template('main/contact.html')
+
 @main.route('/posts', methods=['GET'])
 def post():
     page = request.args.get('page', 1, type=int)
@@ -40,10 +44,12 @@ def post():
                  .order_by(Post.created_date
                  .desc()).paginate(page=page, per_page=10))
     return render_template('main/posts.html', posts=all_posts)
+
 @main.route('/post/<int:id>', methods=['GET'])
 def post_detail(id):
     post = Post.query.get_or_404(id)
     return render_template('main/post_detail.html', post=post)
+
 @main.route('/category/<int:category_id>', methods=['GET'])
 def posts_by_category(category_id):
     page = request.args.get('page', 1, type=int)
