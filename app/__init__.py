@@ -44,8 +44,8 @@ def configure_logging(app):
 
 configure_logging(app)
 
-from app.main import main as main_blueprint
-app.register_blueprint(main_blueprint)
+from app.main import main
+app.register_blueprint(main)
 
 from app.admin import admin_bp, admin
 

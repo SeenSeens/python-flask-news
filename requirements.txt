@@ -14,3 +14,4 @@ flask-login
 flask-hashing
 Flask-Mail
 cloudinary
+pymysql
