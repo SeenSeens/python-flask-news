@@ -1,0 +1,78 @@
+{% extends 'admin/layout/base.html' %}
+{% block title %}Quản lý tài khoản{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row tm-content-row">
+            <div class="col-12 tm-block-col">
+                <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                    <h2 class="tm-block-title">List of Accounts</h2>
+                    <p class="text-white">Accounts</p>
+                    <select class="custom-select">
+                        <option value="0">Select account</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Editor</option>
+                        <option value="3">Merchant</option>
+                        <option value="4">Customer</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row tm-content-row">
+            <div class="tm-block-col tm-col-avatar">
+                <div class="tm-bg-primary-dark tm-block tm-block-avatar">
+                    <h2 class="tm-block-title">Change Avatar</h2>
+                    <div class="tm-avatar-container">
+                        <img src="{{ url_for('static', filename='admin/img/avatar.png') }}" alt="Avatar" class="tm-avatar img-fluid mb-4"/>
+                        <a href="#" class="tm-avatar-delete-link">
+                            <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                        </a>
+                    </div>
+                    <button class="btn btn-primary btn-block text-uppercase">
+                    Upload New Photo
+                    </button>
+                </div>
+            </div>
+            <div class="tm-block-col tm-col-account-settings">
+                <div class="tm-bg-primary-dark tm-block tm-block-settings">
+                    <h2 class="tm-block-title">Account Settings</h2>
+                    <form action="{{ url_for('admin.edit_user', id=user.id) }}" class="tm-signup-form row" method="POST" enctype="multipart/form-data" autocomplete="off">
+                        <div class="form-group col-lg-6">
+                            <label for="name">Tên tài khoản</label>
+                            <input id="name" name="name" type="text" value="{{ user.name }}" class="form-control validate"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="username">Tên đăng nhập</label>
+                            <input id="username" name="username" type="text" value="{{ user.username }}" class="form-control validate"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" value="{{ user.email }}" class="form-control validate"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="password">Mật khẩu</label>
+                            <input id="password" name="password" type="password" value="{{ user.password }}" class="form-control validate"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="confirm">Nhập lại mật khẩu</label>
+                            <input id="confirm" name="confirm" type="password" value="{{ user.password }}" class="form-control validate"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="confirm">Vai trò</label>
+                            <select class="custom-select form-select" name="user_role">
+                                <option value="1" {% if user.user_role == UserRole.ADMIN %}selected{% endif %}>Admin</option>
+                                <option value="2" {% if user.user_role == UserRole.USER %}selected{% endif %}>User</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <button type="submit" class="btn btn-primary btn-block text-uppercase">Cập nhật tài khoản</button>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <button type="submit" class="btn btn-primary btn-block text-uppercase">Xóa tài khoản</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

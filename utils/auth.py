@@ -1,7 +1,7 @@
 import hashlib
 
 from app import db
-from app.models.users import User
+from app.models.users import User, UserRole
 
 
 def add_user(name, username, password, **kwargs):
@@ -21,3 +21,17 @@ def check_login(username, password):
 
 def get_user_by_id(user_id):
     return User.query.get(id=user_id).first()
+
+def update_user(user_id, name, username, email, password=None, thumbnail=None, user_role=None):
+    user = User.query.get(user_id)
+    if user:
+        user.name = name.strip()
+        user.username = username.strip()
+        user.email = email.strip()
+        user.user_role = UserRole(int(user_role))
+        if password:
+            user.password = hashlib.md5(password.strip().encode('utf-8')).hexdigest()
+        if thumbnail:
+            user.thumbnail = thumbnail
+        db.session.commit()
+    return user

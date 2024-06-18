@@ -1,9 +1,7 @@
 from functools import wraps
 from flask import redirect, url_for, flash
 from flask_login import current_user
-
 from app.models.users import UserRole
-
 
 def admin_required(f):
     @wraps(f)

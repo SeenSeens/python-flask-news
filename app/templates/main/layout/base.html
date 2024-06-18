@@ -37,6 +37,10 @@
 
             var formData = new FormData(this);
 
+            // Clear any previous messages
+            $('#registerError').hide().text('');
+            $('#successAlert').hide().text('');
+
             $.ajax({
                 type: 'POST',
                 url: '{{ url_for("main.register") }}',
@@ -45,22 +49,28 @@
                 processData: false,
                 success: function(response) {
                     if (response.status === 'success') {
-                        $('#registerModal').modal('hide');
-                        $('#successAlert').text('Đăng ký thành công').fadeIn();
+                        $('#successAlert').text(response.message).fadeIn();
                         setTimeout(function() {
-                            $('#successAlert').hide();
+                            $('#successAlert').fadeOut();
                             location.reload();
                         }, 3000); // Ẩn thông báo sau 3 giây và tải lại trang
                     } else {
                         $('#registerError').text(response.message).fadeIn();
+                        setTimeout(function() {
+                            $('#registerError').fadeOut();
+                        }, 5000); // Ẩn thông báo lỗi sau 5 giây
                     }
                 },
                 error: function(response) {
                     $('#registerError').text('Có lỗi xảy ra, vui lòng thử lại.').fadeIn();
+                    setTimeout(function() {
+                        $('#registerError').fadeOut();
+                    }, 5000); // Ẩn thông báo lỗi sau 5 giây
                 }
             });
         });
     });
+
     </script>
     <div id="fb-root"></div>
 {#    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v20.0&appId=2367103220153246" nonce="vb8eTzCr"></script>#}

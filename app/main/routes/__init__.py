@@ -1,1 +1,1 @@
-from . import index, posts, about, categories, contact, auth
+from . import index, posts, about, categories, contact, auth, routes
