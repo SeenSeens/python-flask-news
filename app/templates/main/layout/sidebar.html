@@ -1,0 +1,31 @@
+<div class="col-md-4">
+                <!-- Post preview-->
+                <div class="post-preview">
+                    <h5 class="">Tìm kiếm</h5>
+                    <input type="text" name="s" class="form-control">
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />
+                <!-- Post preview-->
+                <div class="post-preview">
+                    <h5 class="">Chuyên mục</h5>
+                    <ul class="list-group">
+                        {% for category in categories %}
+                            <li class="list-group-item border-0"><a href="{{ url_for('main.posts_by_category', category_id=category.id) }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />
+                <!-- Post preview-->
+                <div class="post-preview">
+                    <h5 class="">Bài viết mới nhất</h5>
+                    <ul class="list-group">
+                        {% for post in recent_posts %}
+                            <li class="list-group-item border-0"><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />
+            </div>
