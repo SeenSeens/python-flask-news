@@ -1,0 +1,20 @@
+<div class="col-md-8 border-end">
+    {% for post in posts %}
+        <!-- Post preview-->
+        <div class="post-preview">
+            <a href="{{ url_for('main.post_detail', id=post.id) }}">
+                <h2 class="post-title">{{ post.name }}</h2>
+                <p class="post-subtitle">{{ post.excerpt | safe }}</p>
+            </a>
+            <p class="post-meta">
+                Chuyên mục
+                <a href="{{ url_for('main.posts_by_category', category_id=post.category_id) }}">{{ post.category.name }}</a>
+                {{ post.created_date.strftime('%d-%m-%Y') }}
+            </p>
+        </div>
+        <!-- Divider-->
+        <hr class="my-4" />
+    {% endfor %}
+    <!-- Pager-->
+    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{{ url_for('main.post') }}">Older Posts →</a></div>
+</div>

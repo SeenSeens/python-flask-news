@@ -29,8 +29,8 @@
                             <h3 class="post-subtitle">{{ post.excerpt | safe }}</h3>
                         </a>
                         <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
+                            Chuyên mục
+                            <a href="{{ url_for('main.posts_by_category', category_id=post.category_id) }}">{{ post.category.name }}</a>
                             {{ post.created_date.strftime('%d-%m-%Y') }}
                         </p>
                     </div>

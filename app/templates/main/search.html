@@ -17,7 +17,19 @@
     <!-- Main Content-->
     <div class="container-fluid px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            {% include 'main/layout/post.html' %}
+            <div class="col-md-8 border-end">
+                <!-- Hiển thị kết quả tìm kiếm -->
+                {% if search_results %}
+                    <h2>Kết quả tìm kiếm cho "{{ query }}"</h2>
+                    <ul>
+                        {% for post in search_results %}
+                            <li><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else  %}
+                    <h2>Không tìm thấy kết quả cho "{{ query }}"</h2>
+                {% endif %}
+            </div>
             {% include 'main/layout/sidebar.html' %}
         </div>
     </div>

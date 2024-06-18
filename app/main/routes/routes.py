@@ -14,6 +14,27 @@ def inject_categories():
 def get_recent_posts():
     recent_posts = Post.query.filter_by(active=True).order_by(Post.created_date.desc()).limit(5).all()
     return dict(recent_posts=recent_posts)
+
+# @main.context_processor
+# def search():
+#     query = request.args.get('query', '')
+#     search_results = []
+#     if query:
+#         search_results = Post.query.filter(Post.title.contains(query) | Post.content.contains(query)).all()
+#     return render_template('main/index.html', search_results=search_results, query=query)
+# @main.context_processor
+# def search_posts(query):
+#     if query:
+#         search_results = Post.query.filter(Post.title.contains(query) | Post.content.contains(query)).all()
+#     else:
+#         search_results = []
+#     return search_results
+# @main.context_processor
+# def inject_search():
+#     def search(query):
+#         return search_posts(query)
+#     return dict(search=search)
+
 @main.route('/media/<path:filename>')
 def media(filename):
     return send_from_directory(app.config['MEDIA_FOLDER'], filename)
