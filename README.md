@@ -15,8 +15,8 @@
 3. `python3 -m venv venv`
 4. `source venv/bin/activate`
 5. Cài đặt phụ thuộc: `pip install -r requirements.txt`.
-6. Chạy ứng dụng: `flask run`.# python-flask-news
-7. Chạy Gunicorn: `gunicorn --bind 127.0.0.1:5000 wsgi:app`
+6. Chạy ứng dụng: `flask run`.# Nếu chạy dòng này thì không cần chạy dòng dưới
+7. Chạy Gunicorn: `gunicorn --bind 127.0.0.1:5000 wsgi:app` # Nếu chạy dòng này thì không cần chạy dòng trên
 
 ## Flask db migrate
 - flask db init
