@@ -12,8 +12,11 @@
 ## Bắt đầu nhanh
 1. Sao chép kho lưu trữ.
 2. Sao chép `.env.example` sang `.env` và đặt các biến môi trường của bạn.
-3. Cài đặt phụ thuộc: `pip install -r requirements.txt`.
-4. Chạy ứng dụng: `flask run`.# python-flask-news
+3. `python3 -m venv venv`
+4. `source venv/bin/activate`
+5. Cài đặt phụ thuộc: `pip install -r requirements.txt`.
+6. Chạy ứng dụng: `flask run`.# python-flask-news
+7. Chạy Gunicorn: `gunicorn --bind 127.0.0.1:5000 wsgi:app`
 
 ## Flask db migrate
 - flask db init
