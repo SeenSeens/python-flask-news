@@ -16,3 +16,4 @@ Flask-Mail
 cloudinary
 pymysql
 Flask-Toastr
+gunicorn
