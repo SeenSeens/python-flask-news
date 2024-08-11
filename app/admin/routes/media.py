@@ -23,3 +23,4 @@ def upload_image():
 @admin_bp.route('/media/<path:filename>')
 def media(filename):
     return send_from_directory(current_app.config['MEDIA_FOLDER'], filename)
+

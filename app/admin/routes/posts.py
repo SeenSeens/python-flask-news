@@ -7,7 +7,6 @@ from utils.images import handle_image_upload, delete_image
 from flask_login import login_required
 from utils.decorators import admin_required
 
-
 @admin_bp.route('/posts')
 @login_required
 @admin_required
@@ -30,13 +29,13 @@ def add_new_posts():
         is_draft = request.form.get('is_draft', False)
         # Xử lý file upload
         file = request.files['thumbnail']
-        filename = handle_image_upload(file)
+        # filename = handle_image_upload(file)
 
         new_post = Post(
             name=name,
             description=description,
             excerpt=excerpt,
-            thumbnail=filename,
+            thumbnail=file,
             category_id=category_id,
             active=not is_draft
         )

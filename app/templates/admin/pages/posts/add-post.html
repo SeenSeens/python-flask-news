@@ -48,7 +48,7 @@
                                 <i id="uploadIcon" class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
                             </div>
                             <div class="custom-file mt-3 mb-3">
-                                <input id="fileInput" class="form-control-file" type="file" name="thumbnail" style="display:none;" />
+                                <input id="fileInput" class="form-control-file" type="hidden" name="thumbnail" />
                                 <input type="button" class="btn btn-primary btn-block mx-auto" value="THÊM ẢNH ĐẠI DIỆN" onclick="document.getElementById('fileInput').click();" />
                             </div>
                         </div>
@@ -62,5 +62,10 @@
     </div>
 {% endblock %}
 {% block js %}
-    <script src="{{ url_for('static', filename='admin/js/preview.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='admin/library/preview.js') }}"></script>
+    <script src="https://cdn.tiny.cloud/1/1qa5t0dn0b46dukvifb2b500e7ausw3qelzj0jie038xyejf/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@2/dist/tinymce-jquery.min.js"></script>
+{#    <script src="{{ url_for('static', filename='admin/plugins/file-manager/plugin.min.js') }}"></script>#}
+{#    <script src="{{ url_for('static', filename='admin/library/tinymce.js') }}"></script>#}
+
 {% endblock %}

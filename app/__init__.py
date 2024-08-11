@@ -57,3 +57,9 @@ app.register_blueprint(admin_bp)
 @app.route('/media/<path:filename>')
 def media(filename):
     return send_from_directory(app.config['MEDIA_FOLDER'], filename)
+
+# @app.route('/static/admin/plugins/ckfinder/ckfinder.html', methods=['GET', 'POST'])
+# def ckfinder_connector():
+#     # Thực hiện các xử lý cần thiết với file
+#     # Ví dụ, bạn có thể sử dụng Flask để upload, xóa file dựa trên các yêu cầu từ CKFinder
+#     pass
